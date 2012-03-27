@@ -1,0 +1,33 @@
+# User Guide
+
+## Requirements
+
+Nodechat requires Google Chrome 16+ or Mozilla Firefox 4+.
+
+## Starting Nodechat
+
+To start Nodechat, navigate to URL where it was installed. You will be prompted for a username. Choose your username and click OK.
+
+![sshot1](sshot1.png)
+
+Now you will see the messaging interface.
+
+![sshot1](sshot2.png)
+
+## Sending messages
+
+To send a message, type it into the "Message" field and hit "Submit".
+
+![sshot1](sshot3.png)
+
+The message will appear in the main window.
+
+![sshot1](sshot4.png)
+
+## Uploading files
+
+To upload a file, click the "Choose file" button, and select the file. After it is uploaded it will appear as a regular message.
+
+![sshot1](sshot5.png)
+
+To download a file, just click its name.

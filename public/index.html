@@ -10,10 +10,17 @@
     var exports = this;
     jQuery(function(){
       var App = require("index");
-      exports.app = new App({el: $("body")});      
+      exports.app = new App({el: $("div.main.viewport")});      
     });
   </script>  
 </head>
 <body>
+  <header id="header"><h1>nodechat</h1></header>
+  <article id="article">
+    <div>
+      <div class="main viewport">
+      </div>
+    </div>
+  </article>
 </body>
 </html>

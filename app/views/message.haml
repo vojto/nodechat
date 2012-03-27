@@ -1,2 +1,7 @@
-%strong= @item.name
-%p= @item.message
+%strong= @item.username
+
+- if @item.type == 'text'
+  %p= @item.message
+- else
+  %p
+    %a{href: @item.url, target: "_blank"}= @item.name

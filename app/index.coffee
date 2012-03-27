@@ -1,24 +1,27 @@
 require('lib/setup')
 
-io = require('vendor/socket.io')
-
 Spine = require('spine')
 Kit   = require('appkit')
+IO = require('vendor/socket.io')
+Aes = require('vendor/aes')
+
+Connection = require('lib/connection')
 
 Message = require('models/message')
 window.Message = Message
 
 MessageView = require('views/message')
+    
 
 class App extends Spine.Controller
   constructor: ->
     super
     @setupViews()
-    @setupNetwork()
+    @socket = IO.connect('http://localhost')
+    @connection = new Connection(delegate: @, socket: @socket)
   
   setupViews: ->
-    # @name = prompt("Ako sa volas?")
-    @name = "vojto"
+    @name = prompt("Name?")
     @form = new Kit.Form(fields: {message: 'Message'}, delegate: this)
     @list = new Kit.List(model: Message, method: 'message', delegate: @, itemView: MessageView)
     @append @list, @form
@@ -34,22 +37,31 @@ class App extends Spine.Controller
     reader = new FileReader()
     reader.onload = (e) =>
       data = e.target.result
-      console.log data
-      @socket.emit 'file', data
-    reader.readAsBinaryString(file)
-
-  setupNetwork: ->
-    @socket = io.connect('http://localhost')
-    @socket.on 'message', @didReceiveMessage
+      @connection.sendFile({data: data, name: file.fileName, username: @name})
+    reader.readAsText(file)
   
   didReceiveMessage: (message) =>
     message = new Message(message)
+    message.type = 'text'
     message.save()
-    @form.reset()
+    @update()
+  
+  didReceiveFile: (file) =>
+    console.log 'got file', file
+    message = new Message(file)
+    message.type = 'file'
+    message.save()
+    @update()
+  
+  update: ->
+    $("body").prop(scrollTop: 9999)
   
   didSubmit: (object) ->
-    object.name = @name
-    @socket.emit('message', object)
+    object.username = @name
+    @connection.sendMessage(object)
+    @form.reset()
+  
+  didSelect: ->
     
 
 module.exports = App

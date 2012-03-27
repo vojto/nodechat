@@ -1,0 +1,16 @@
+{
+  "name": "app",
+  "version": "0.0.1",
+  "dependencies": { 
+    "serveup": "~0.0.2",
+    "hem": "~0.1.6",
+    "es5-shimify": "~0.0.1",
+    "json2ify": "~0.0.1",
+    "jqueryify": "~0.0.1",
+    "spine": "~1.0.5",
+    "coffee-sript": "1.2.0",
+    "haml-coffee": "~0.5.5",
+    "appkit": "git://github.com/vojto/spine-appkit.git",
+    "socket.io": "0.9.2"
+  }
+}

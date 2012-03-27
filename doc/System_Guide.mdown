@@ -1,0 +1,24 @@
+# System Guide
+
+## Platform overview
+
+Nodechat is written in JavaScript for both client and server side. On server side it utilizes [Node.js](http://nodejs.org/) to run JavaScript and work with the system.
+
+## Overview of classes
+
+![sshot1](https://github.com/vojto/nodechat/raw/master/doc/overview.png)
+
+- Client
+  - `App` is responsible for managing user interface and communicating with `Connection`
+  - `Message` is a model that represents one message. 
+- Shared
+  - `Connection` is responsible for communication between the client and the server. The communication is implemented using the WebSocket protocol with help of Socket.IO library. Encryption is done by Aes library. 
+- Server
+  - `Server` is responsible for managing messages from clients, and sending messages back to clients. Its functioning consists of broadcasting received messages to all connected clients. For files, it saves them to local file system and broadcasts download URL to be used by clients.
+
+
+## Third party modules
+
+- [Appkit](https://github.com/vojto/spine-appkit) provides user interfaces for lists and forms. It supports automatic binding to models reducing the glue code needed.
+- [Socket.IO](http://socket.io/) provides communication with the server using WebSocket protocol where supported. For older browsers it gracefully degrades to other techniques, such as long polling or Flash.
+- [Aes](http://www.movable-type.co.uk/scripts/aes.html) is a library for encrypting and decrypting data using AES cipher. It is used to encrypt the communication between the client and the server.

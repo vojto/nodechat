@@ -2,7 +2,7 @@
 
 ## Requirements
 
-Nodechat requires Google Chrome 16+ or Mozilla Firefox 4+.
+Nodechat supports any modern browser. For file uploads functionality, it requires Google Chrome 17+ or Mozilla Firefox 4.0+. 
 
 ## Starting Nodechat
 
